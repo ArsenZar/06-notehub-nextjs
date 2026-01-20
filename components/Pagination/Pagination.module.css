@@ -1,0 +1,46 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+}
+.pagination li:hover {
+    background-color: #e9ecef;
+}
+
+/* li з ReactPaginate */
+.pagination :global(li) {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer;
+    min-width: 36px;
+    height: 36px;
+}
+
+/* a всередині */
+.pagination :global(li > a) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #0d6efd;
+}
+
+/* ACTIVE PAGE — ОСНОВНЕ */
+.pagination :global(li.selected) {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.pagination :global(li.selected > a) {
+    color: #fff;
+    font-weight: 500;
+}
+
+/* hover для активної */
+.pagination :global(li.selected:hover) {
+    background-color: #0b5ed7;
+}
