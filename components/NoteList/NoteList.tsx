@@ -28,12 +28,13 @@ export default function NoteList({ notes }: NoteListProps) {
             {
                 notes?.map((note) => (
                     <li className={css.listItem} key={note.id}>
-                        <Link href={`/notes/${note.id}`}>
-                            <h2 className={css.title}>{note.title}</h2>
-                            <p className={css.content}>{note.content}</p>
-                        </Link>
+                        <h2 className={css.title}>{note.title}</h2>
+                        <p className={css.content}>{note.content}</p>
                         <div className={css.footer}>
                             <span className={css.tag}>{note.tag}</span>
+                            <Link href={`/notes/${note.id}`} className={css.buttonView }>
+                                View Details
+                            </Link>
                             <button className={css.button} onClick={(e) => {
                                 e.stopPropagation();
                                 setDeletedId(note.id);
