@@ -25,10 +25,11 @@ export default function NotesClient() {
         setIsModalOpen(false);
     }
 
-    const { data, isLoading, isFetching, isError } = useQuery({
+    const { data, isLoading, isFetching, isError, error } = useQuery({
         queryKey: ["notes", page, search],
         queryFn: () => fetchNotes(page, search),
-        placeholderData: prev => prev
+        placeholderData: prev => prev,
+        refetchOnMount: false
     });
 
     const notes = data?.notes;
@@ -50,7 +51,7 @@ export default function NotesClient() {
             </div>
 
             {(isLoading || isFetching) && <p className={css.loading}>Loading...</p>}
-            {isError && <p>Error...</p>}
+            {isError && <p>Error... {error.message}</p>}
 
             {notes && notes?.length > 0 && <NoteList notes={notes} />}
 

@@ -10,6 +10,20 @@ interface FetchNotesResponse {
     totalPages: number;
 }
 
+export const api = axios.create({
+    baseURL: "https://notehub-public.goit.study/api",
+    headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+    },
+});
+
+export const getSingleNote = async (id: string) => {
+    const res = await api.get<Note>(`/notes/${id}`);
+    return res.data;
+};
+
+
+
 export type NoteListResponse = {
     notes: Note[];
     total: number;
@@ -17,11 +31,6 @@ export type NoteListResponse = {
 
 export const getNotes = async () => {
     const res = await axios.get<NoteListResponse>("/notes");
-    return res.data;
-};
-
-export const getSingleNote = async (id: string) => {
-    const res = await axios.get<Note>(`/notes/${id}`);
     return res.data;
 };
 
